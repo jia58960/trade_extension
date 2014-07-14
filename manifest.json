@@ -1,0 +1,31 @@
+﻿{
+	"manifest_version": 2,
+	"name": "trade_sort",
+	"version": "0.0.1",
+	"icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+	"content_scripts":[
+		{
+			"run_at": "document_end",
+			"matches":["https://trade.1234567.com.cn/MyAssets/*"],
+			"js":["jquery-2.0.0.min.js", "MyAssets.js", "table.js"],
+			"css":["trade.css"]
+		},
+		{
+			"run_at": "document_end",
+			"matches":["https://trade.1234567.com.cn/Investment/*"],
+			"js":["jquery-2.0.0.min.js", "Investment.js", "table.js"],
+			"css":["trade.css"]
+		},
+		{
+			"run_at": "document_end",
+			"matches":["https://trade.1234567.com.cn/zsb/*"],
+			"js":["jquery-2.0.0.min.js", "zsb.js", "table.js"],
+			"css":["trade.css"]
+		}
+	],
+	"web_accessible_resources":["jquery.min.map"]
+}

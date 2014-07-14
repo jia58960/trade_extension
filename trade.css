@@ -1,0 +1,3 @@
+/*table sort background*/
+table.j-custom th.sort{border: 2px solid #000}
+table.j-custom th.current{background:#e2eff8;}
