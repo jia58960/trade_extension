@@ -4,7 +4,6 @@
 		var fixedFundDetailFunc = (function(){
 			var opt = $(".mctb.mt10 tbody tr").eq(0).html();
 			$(".mctb.mt10 tbody tr").eq(0).remove();
-			console.log(opt);
 			var opt = '<thead>' + opt + '</thead>';
 			$(".mctb.mt10").prepend(opt).addClass('j-custom');
 
@@ -12,7 +11,11 @@
 				var str = $(this).find("td:eq(-3)").text();
 				var t_str = str.substring(0,10);
 				var st = -((new Date(t_str.replace(/-/g,'/'))).getTime())/1000;
-				console.log(st);
+
+				if (isNaN(st)) {
+					st = 0;
+				};
+
 				$(this).find("td:eq(-3)").attr('_order',st);
 			});
 

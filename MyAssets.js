@@ -1,40 +1,92 @@
-$("#tab0").bind('DOMNodeInserted', function(e) {
 
-	if(e.target.id == "tb_0_0"){
+$("#zsProduce").bind('DOMNodeInserted', function(e) {
+	//console.log(e);
 
-		console.log('Ok'); //初始化
-		/**
-		* 我的资产->基金明细
-		**/
-		var fundDetailFunc = (function(){
-			$("#tb_0_0").addClass('j-custom'); //定义table标识符（样式用到）
-			$("#tb_0_0 > thead > tr >th:last").before("<th>收益率</th>");//新增收益率数据列	
-			$("#tb_0_0 > tbody > tr:even").each(function(){
+	if (e.target.id == "tb_0_zs") {
 
+		console.log('zsok');
+
+		var zsDetailFunc = (function(){
+			$("#tb_0_zs").addClass('j-custom'); //定义table标识符（样式用到）
+			$("#tb_0_zs > thead > tr >th:last").before("<th>收益率</th>");//新增收益率数据列
+
+			$("#tb_0_zs > tbody > tr:even").each(function(){
 		        var a = $(this).find("td:eq(5) span").text(),
 			        b = $(this).find("td:eq(6) span").text(),
 			        c = ((Math.round((b/(a-b))*10000))/100),
 			        d = 'green';
 			        yield = c + "%";
-
 			    if(c>=0){
 			    	d = 'red';
 			    }
-
 		        $(this).find("td:last").before('<td class="tar ' + d +'"><span class="n">' + yield + "</span></td>");
 		    });
+
+		    $.each($("#tb_0_zs tbody tr"), function(i,v) {
+				var str = $(this).find("td:eq(-5)").text();
+				var t_str = str.split("/");
+				
+				$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));
+			});
+
+			//指定排序数据列
+			var e = $("#tb_0_zs thead th");
+
+			e.eq(-2).addClass('sort');
+			e.eq(-3).addClass("sort");
+		    e.eq(-4).addClass("sort");
+		    e.eq(-5).addClass("sort");
+
+			tableSort($('#tb_0_zs'),8);
+		})();
+	}
+
+});
+/*=========================================================*/
+/**
+* 我的资产->基金明细
+**/
+$("#tab0").bind('DOMNodeInserted', function(e) {
+
+	if(e.target.id == "tb_0_0"){
+		console.log('Ok'); //初始化
+		
+		var fundDetailFunc = (function(){
+			$("#tb_0_0").addClass('j-custom'); //定义table标识符（样式用到）
+			$("#tb_0_0 > thead > tr >th:last").before("<th>收益率</th>");//新增收益率数据列	
+
+			$("#tb_0_0 > tbody > tr:even").each(function(){
+		        var a = $(this).find("td:eq(5) span").text(),
+			        b = $(this).find("td:eq(6) span").text(),
+			        c = ((Math.round((b/(a-b))*10000))/100),
+			        d = 'green';
+			        yield = c + "%";
+			    if(c>=0){
+			    	d = 'red';
+			    }
+		        $(this).find("td:last").before('<td class="tar ' + d +'"><span class="n">' + yield + "</span></td>");
+		    });
+
+		    $.each($("#tb_0_0 tbody tr"), function(i,v) {
+					var str = $(this).find("td:eq(-5)").text();
+					var t_str = str.split("/");
+					
+					$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));
+			});
 
 			//指定排序数据列
 			var e = $("#tb_0_0 thead th");
 			e.eq(-2).addClass('sort');
 			e.eq(-3).addClass("sort");
 		    e.eq(-4).addClass("sort");
+		    e.eq(-5).addClass("sort");
 
 			tableSort($('#tb_0_0'),8);
 
 		})();
 	}
 });
+
 /*=========================================================*/
 
 /**
@@ -81,12 +133,12 @@ setTimeout(function(){
 		
 		var all_value = parseFloat($("#all_value").text()),
 			fund_benifit = parseFloat($("#fund_benifit").text()),
-			//zs_benifit = parseFloat($("#zs_benifit").text()),
+			zs_benifit = parseFloat($("#zs_benifit").text()),
 			fixedprofit = parseFloat($("#fixedprofit").text()),
 			TiantianCashBag_benifit = parseFloat($("#TiantianCashBag_benifit").text()),
 			a = 'green';
 
-		var all_benifit = fund_benifit + fixedprofit + TiantianCashBag_benifit,
+		var all_benifit = fund_benifit + fixedprofit + zs_benifit + TiantianCashBag_benifit,
 			all_yield = ((Math.round((all_benifit/(all_value-all_benifit))*10000))/100),
 			ROA = all_yield + "%";
 
@@ -180,5 +232,6 @@ function tableSort(jqTableObj,colNum) {
 		}
 		
 		return {'sortStr' : sortStr};
+
 	})();
 }
