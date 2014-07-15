@@ -27,6 +27,7 @@
 			tableSort($('.mctb.mt10'));
 
 		}());
+
 	},4000);
 	
 function tableSort(jqTableObj) {
