@@ -6,28 +6,10 @@ window.setTimeout(function(){
 	var zsbSqQuery = (function(){
 
 		var selector = $("#tbb-0");
-		var opt = selector.find("table tbody tr:eq(0)").html();
-		selector.find("table tbody tr:eq(0)").eq(0).remove();
-		var opt = '<thead>' + opt + '</thead>';
-		selector.find("table").prepend(opt).addClass('j-custom');
-		
-		$.each(selector.find("table tbody tr"), function(i,v) {
-			/*确认日期*/
-			var a = $(this).find("td:eq(0)").text();
-			var b = ((new Date(a)).getTime())/1000;
-			console.log(b);
-			
-			if (isNaN(b)) {
-				b = 0;
-			};
-			$(this).find("td:eq(0)").attr('_order',b);
-		});
+		queryDomFunc(selector, [0,1], 5, 3, -2, '');
 
-		var b_th = selector.find("table thead th");
-		b_th.eq(0).addClass('sort');
-		b_th.eq(-3).addClass('sort');
-		b_th.eq(-4).addClass('sort');
-		//$(".mctb.mt10 thead tr th:eq(1)").attr('dataType','text');
+		var srotRows = [0,1,3,-2,-3,-4,-5];
+		sortRowsFunc(selector.find("table thead th"),srotRows);
 
 		tableSort(selector.find("table"));
 	})();
@@ -35,37 +17,10 @@ window.setTimeout(function(){
 	/*交易确认查询*/
 	var zsbQrQuery = (function(){
 		var selector = $("#tbb-1");
-		var opt = selector.find("table tbody tr:eq(0)").html();
-		selector.find("table tbody tr:eq(0)").eq(0).remove();
-		var opt = '<thead>' + opt + '</thead>';
-		selector.find("table").prepend(opt).addClass('j-custom');
-		
-		$.each(selector.find("table tbody tr"), function(i,v) {
-			/*确认日期*/
-			var a = $(this).find("td:eq(0)").text();
-			var b = ((new Date(a)).getTime())/1000;
-			console.log(b);
-			
-			if (isNaN(b)) {
-				b = 0;
-			};
+		queryDomFunc(selector, [0], 4, 2, '', -4);
 
-			$(this).find("td:eq(0)").attr('_order',b);
-
-			//确认金额
-			var c = $(this).find("td:eq(-4)").text();
-			var d = c.replace('￥','');
-			$(this).find("td:eq(-4)").attr('_order',d);
-			
-
-		});
-
-		var b_th = selector.find("table thead th");
-		b_th.eq(0).addClass('sort');
-		b_th.eq(-3).addClass('sort');
-		b_th.eq(-4).addClass('sort');
-		b_th.eq(-5).addClass('sort');
-		//$(".mctb.mt10 thead tr th:eq(1)").attr('dataType','text');
+		var srotRows = [0,2,4,-3,-4,-5];
+		sortRowsFunc(selector.find("table thead th"),srotRows);
 
 		tableSort(selector.find("table"));
 	})();

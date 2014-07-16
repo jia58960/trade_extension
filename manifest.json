@@ -29,13 +29,13 @@
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/Query/*"],
-			"js":["jquery-2.0.0.min.js", "ZhCN_Pinyin.min.js", "tableSort.js", "table.js", "Query.js"],
+			"js":["jquery-2.0.0.min.js", "ZhCN_Pinyin.min.js", "tableSort.js", "table.js", "queryLib.js", "Query.js"],
 			"css":["trade.css"]
 		},
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/zsb/query*"],
-			"js":["jquery-2.0.0.min.js", "ZhCN_Pinyin.min.js", "tableSort.js", "table.js", "zsbQ.js"],
+			"js":["jquery-2.0.0.min.js", "ZhCN_Pinyin.min.js", "tableSort.js", "table.js", "queryLib.js", "zsbQ.js"],
 			"css":["trade.css"]
 		}
 
