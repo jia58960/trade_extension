@@ -2,7 +2,6 @@
 * 我的资产->指数宝基金明细
 **/
 $("#zsProduce").bind('DOMNodeInserted', function(e) {
-	//console.log(e);
 
 	if (e.target.id == "tb_0_zs") {
 
@@ -51,14 +50,15 @@ $("#zsProduce").bind('DOMNodeInserted', function(e) {
 	}
 
 });
+
 /*=========================================================*/
+
 /**
 * 我的资产->基金明细
 **/
 $("#tab0").bind('DOMNodeInserted', function(e) {
 
 	if(e.target.id == "tb_0_0"){
-		console.log('Ok'); //初始化
 		
 		var fundDetailFunc = (function(){
 			$("#tb_0_0").addClass('j-custom'); //定义table标识符（样式用到）
@@ -113,16 +113,18 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 					
 					//if(e.target.className = "wss"){
 
-						console.log('list_loaded!');
-
 						var a = $("#tab1 div:eq(-1)").attr('id'),
 							b = a.replace('div','tb_');
 
-						console.log(b);
-
+						
 						$("#"+b).addClass('j-custom');
 
+						$.each($("#" +b +" tbody tr"), function(i,v) {
+							$(this).find("td:eq(1)").attr('_order',$(this).find("td:eq(1)").text());
+						});
+
 						var c = $("#"+ b +' thead th');
+						c.eq(1).addClass('sort');
 						c.eq(-2).addClass('sort');
 						c.eq(-3).addClass("sort");
 
@@ -166,97 +168,3 @@ setTimeout(function(){
 		$(".asset_all .clear").append(b+c);
 	})();
 },3000);
-
-function tableSort(jqTableObj,colNum) {
-
-	jqTableObj.find('thead th.sort').click(
-
-		function(){
-			//去除hideTr区域(基金列表)
-			//$("#tb_0_0 .hideTr").remove();
-			jqTableObj.find("tr.hideTr").remove();
-			
-			var dataType = $(this).attr('dataType');
-			var tableObj = $(this).closest('table');
-			var index = tableObj.find('thead th').index(this) + 1;
-			var arr = [];
-			var row = tableObj.find('tbody tr');
-			
-			$.each(row, function(i){arr[i] = row[i]});
-			
-			if($(this).hasClass('current')){
-				arr.reverse();
-			} else {
-				arr.sort(Utils.sortStr(index, dataType))
-				
-				tableObj.find('thead th').removeClass('current');
-				$(this).addClass('current');
-			}
-			
-			var fragment = document.createDocumentFragment();
-			
-			$.each(arr, function(i){
-				fragment.appendChild(arr[i]);
-			});
-			
-			tableObj.find('tbody').append(fragment);
-
-			if (colNum){
-				jqTableObj.find("tbody tr").after('<tr class="hideTr hide"><td colspan="'+colNum+'"></td></tr>');	
-			}
-		}
-	);	
-	
-	var Utils = (function() {
-		function sortStr(index, dataType){
-			return function(a, b){
-				var aText=$(a).find('td:nth-child(' + index + ')').attr('_order') || $(a).find('td:nth-child(' + index + ')').text();
-				var bText=$(b).find('td:nth-child(' + index + ')').attr('_order') || $(b).find('td:nth-child(' + index + ')').text();
-		
-				if(dataType != 'text'){
-					aText=parseNonText(aText, dataType);
-					bText=parseNonText(bText, dataType);
-					
-					return aText > bText ? -1 : bText > aText ? 1 : 0;
-				} else {
-					return aText.localeCompare(bText)
-				}
-			}
-		}
-		
-		function parseNonText(data, dataType){
-			switch(dataType){
-				case 'int':
-					return parseInt(data) || 0;
-				case 'float':
-					return parseFloat(data) || 0;
-				case "date":
-                	return Date.parse(tdVal) || 0;
-				case "string":
-				default :
-                {
-                    var tdVal = data.toString() || "";
-                    //如果值不为空，获得值是汉字的全拼
-                    if (tdVal) {
-                        tdVal = ZhCN_Pinyin.GetQP(tdVal);
-                        tdVal = tdVal.toLowerCase();
-                        //console.log(tdVal);
-                    }
-                    return tdVal;
-                }
-			}
-		}
-		
-		//过滤中文字符和$
-		function filterStr(data){
-			if (!data) {
-				return 0;
-			}
-			
-			return parseFloat(data.replace(/^[\$a-zA-z\u4e00-\u9fa5 ]*(.*?)[a-zA-z\u4e00-\u9fa5 ]*$/,'$1'));
-		}
-		
-		return {'sortStr' : sortStr};
-
-	})();
-}
