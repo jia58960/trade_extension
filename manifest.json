@@ -11,18 +11,18 @@
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/MyAssets/*"],
-			"js":["jquery-2.0.0.min.js", "MyAssets.js", "table.js"],
+			"js":["jquery-2.0.0.min.js", "MyAssets.js", "table.js", "ZhCN_Pinyin.min.js"],
 			"css":["trade.css"]
 		},
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/Investment/*"],
-			"js":["jquery-2.0.0.min.js", "Investment.js", "table.js"],
+			"js":["jquery-2.0.0.min.js", "Investment.js", "table.js", "ZhCN_Pinyin.min.js"],
 			"css":["trade.css"]
 		},
 		{
 			"run_at": "document_end",
-			"matches":["https://trade.1234567.com.cn/zsb/*"],
+			"matches":["https://trade.1234567.com.cn/zsb/default*"],
 			"js":["jquery-2.0.0.min.js", "zsb.js", "table.js"],
 			"css":["trade.css"]
 		},
@@ -31,8 +31,14 @@
 			"matches":["https://trade.1234567.com.cn/Query/*"],
 			"js":["jquery-2.0.0.min.js", "Query.js", "table.js"],
 			"css":["trade.css"]
+		},
+		{
+			"run_at": "document_end",
+			"matches":["https://trade.1234567.com.cn/zsb/query*"],
+			"js":["jquery-2.0.0.min.js", "zsbQ.js", "table.js"],
+			"css":["trade.css"]
 		}
-		
+
 	],
 	"web_accessible_resources":["jquery.min.map"]
 }

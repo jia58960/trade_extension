@@ -1,4 +1,6 @@
-
+/**
+* 我的资产->指数宝基金明细
+**/
 $("#zsProduce").bind('DOMNodeInserted', function(e) {
 	//console.log(e);
 
@@ -11,6 +13,7 @@ $("#zsProduce").bind('DOMNodeInserted', function(e) {
 			$("#tb_0_zs > thead > tr >th:last").before("<th>收益率</th>");//新增收益率数据列
 
 			$("#tb_0_zs > tbody > tr:even").each(function(){
+
 		        var a = $(this).find("td:eq(5) span").text(),
 			        b = $(this).find("td:eq(6) span").text(),
 			        c = ((Math.round((b/(a-b))*10000))/100),
@@ -20,18 +23,24 @@ $("#zsProduce").bind('DOMNodeInserted', function(e) {
 			    	d = 'red';
 			    }
 		        $(this).find("td:last").before('<td class="tar ' + d +'"><span class="n">' + yield + "</span></td>");
+
 		    });
 
 		    $.each($("#tb_0_zs tbody tr"), function(i,v) {
+
 				var str = $(this).find("td:eq(-5)").text();
 				var t_str = str.split("/");
 				
 				$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));
+
+				$(this).find("td:eq(1)").attr('_order',$(this).find("td:eq(1) a").text().trim()); //基金名称_order值
+				$(this).find("td:eq(2)").attr('_order',$(this).find("td:eq(2)").text()); //基金类型_order值
 			});
 
 			//指定排序数据列
 			var e = $("#tb_0_zs thead th");
-
+			e.eq(1).addClass('sort');
+			e.eq(2).addClass('sort');
 			e.eq(-2).addClass('sort');
 			e.eq(-3).addClass("sort");
 		    e.eq(-4).addClass("sort");
@@ -68,14 +77,18 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 		    });
 
 		    $.each($("#tb_0_0 tbody tr"), function(i,v) {
-					var str = $(this).find("td:eq(-5)").text();
-					var t_str = str.split("/");
-					
-					$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));
+				var str = $(this).find("td:eq(-5)").text();
+				var t_str = str.split("/");
+				
+				$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));
+				$(this).find("td:eq(1)").attr('_order',$(this).find("td:eq(1) a").text().trim());
+				$(this).find("td:eq(2)").attr('_order',$(this).find("td:eq(2)").text());
 			});
 
 			//指定排序数据列
 			var e = $("#tb_0_0 thead th");
+			e.eq(1).addClass('sort');
+			e.eq(2).addClass('sort');
 			e.eq(-2).addClass('sort');
 			e.eq(-3).addClass("sort");
 		    e.eq(-4).addClass("sort");
@@ -214,11 +227,23 @@ function tableSort(jqTableObj,colNum) {
 		function parseNonText(data, dataType){
 			switch(dataType){
 				case 'int':
-					return parseInt(data) || 0
+					return parseInt(data) || 0;
 				case 'float':
-					return parseFloat(data) || 0
+					return parseFloat(data) || 0;
+				case "date":
+                	return Date.parse(tdVal) || 0;
+				case "string":
 				default :
-				return filterStr(data)
+                {
+                    var tdVal = data.toString() || "";
+                    //如果值不为空，获得值是汉字的全拼
+                    if (tdVal) {
+                        tdVal = ZhCN_Pinyin.GetQP(tdVal);
+                        tdVal = tdVal.toLowerCase();
+                        //console.log(tdVal);
+                    }
+                    return tdVal;
+                }
 			}
 		}
 		
