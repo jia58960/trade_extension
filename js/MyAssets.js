@@ -37,16 +37,12 @@ $("#zsProduce").bind('DOMNodeInserted', function(e) {
 			});
 
 			//指定排序数据列
-			var e = $("#tb_0_zs thead th");
-			e.eq(1).addClass('sort');
-			e.eq(2).addClass('sort');
-			e.eq(-2).addClass('sort');
-			e.eq(-3).addClass("sort");
-		    e.eq(-4).addClass("sort");
-		    e.eq(-5).addClass("sort");
+		    var sortRows = [1,2,-2,-3,-5,-4];
+			sortRowsFunc($("#tb_0_zs thead th"), sortRows);
 
-			tableSort($('#tb_0_zs'),8);
+			tableSort($('#tb_0_zs'),9,'hideTr','hideTr hide');
 		})();
+
 	}
 
 });
@@ -86,16 +82,12 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 			});
 
 			//指定排序数据列
-			var e = $("#tb_0_0 thead th");
-			e.eq(1).addClass('sort');
-			e.eq(2).addClass('sort');
-			e.eq(-2).addClass('sort');
-			e.eq(-3).addClass("sort");
-		    e.eq(-4).addClass("sort");
-		    e.eq(-5).addClass("sort");
 
-			tableSort($('#tb_0_0'),8);
+		    var sortRows = [1,2,-2,-3,-5,-4];
+			sortRowsFunc($("#tb_0_0 thead th"), sortRows);
 
+			tableSort($('#tb_0_0'),9,'hideTr','hideTr hide');
+			
 		})();
 	}
 });
@@ -105,7 +97,6 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 /**
 * 我的资产->基金明细(按银行卡显示)
 **/
-
 	var fundSortByBankFunc = (function(){
 		$("#sortBy li:eq(-1)").click(function() {
 			setTimeout(function(){
@@ -121,14 +112,13 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 
 						$.each($("#" +b +" tbody tr"), function(i,v) {
 							$(this).find("td:eq(1)").attr('_order',$(this).find("td:eq(1)").text());
+							$(this).find("td:eq(2)").attr('_order',$(this).find("td:eq(2)").text());
 						});
 
-						var c = $("#"+ b +' thead th');
-						c.eq(1).addClass('sort');
-						c.eq(-2).addClass('sort');
-						c.eq(-3).addClass("sort");
+						var sortRows = [1,2,-2,-3];
+						sortRowsFunc($("#"+ b +' thead th'), sortRows);
 
-						tableSort($("#"+b),6);
+						tableSort($("#"+b),6,'hideTr','hideTr hide');
 					//}
 				//});
 				
@@ -141,7 +131,6 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 /**
 * 总收益率测算
 **/
-
 setTimeout(function(){
 
 	var allYieldFunc = (function(){

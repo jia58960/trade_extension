@@ -1,11 +1,11 @@
 //排序方法
-function tableSort(jqTableObj,colNum) {
+function tableSort(jqTableObj,colNum,rCN,aCN) {
 
 	jqTableObj.find('thead th.sort').click(
 
 		function(){
 			
-			jqTableObj.find("tr.hideTr").remove();
+			if (rCN) jqTableObj.find("tr."+rCN).remove();
 			
 			var dataType = $(this).attr('datatype');
 			var tableObj = $(this).closest('table');
@@ -32,8 +32,8 @@ function tableSort(jqTableObj,colNum) {
 			
 			tableObj.find('tbody').append(fragment);
 
-			if (colNum){
-				jqTableObj.find("tbody tr").after('<tr class="hideTr hide"><td colspan="'+colNum+'"></td></tr>');	
+			if (colNum || aCN){
+				jqTableObj.find("tbody tr").after('<tr class="'+aCN+'"><td colspan="'+colNum+'"></td></tr>');	
 			}
 		}
 	);	

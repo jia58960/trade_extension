@@ -3,42 +3,42 @@
 	"name": "trade_sort",
 	"version": "0.0.1",
 	"icons": {
-        "16": "icon16.png",
-        "48": "icon48.png",
-        "128": "icon128.png"
+        "16": "img/icon16.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
     },
 	"content_scripts":[
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/MyAssets/*"],
-			"js":["jquery-2.0.0.min.js", "table.js", "ZhCN_Pinyin.min.js", "tableSort.js", "MyAssets.js"],
-			"css":["trade.css"]
+			"js":["js/libs/jquery-2.0.0.min.js", "js/libs/table.js", "js/libs/ZhCN_Pinyin.min.js", "js/libs/tableSort.js", "js/MyAssets.js"],
+			"css":["css/trade.css"]
 		},
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/Investment/*"],
-			"js":["jquery-2.0.0.min.js", "table.js", "ZhCN_Pinyin.min.js", "tableSort.js", "Investment.js" ],
-			"css":["trade.css"]
+			"js":["js/libs/jquery-2.0.0.min.js", "js/libs/table.js", "js/libs/ZhCN_Pinyin.min.js", "js/libs/tableSort.js", "js/Investment.js" ],
+			"css":["css/trade.css"]
 		},
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/zsb/default*"],
-			"js":["jquery-2.0.0.min.js", "table.js", "ZhCN_Pinyin.min.js", "tableSort.js", "zsb.js"],
-			"css":["trade.css"]
+			"js":["js/libs/jquery-2.0.0.min.js", "js/libs/table.js", "js/libs/ZhCN_Pinyin.min.js", "js/libs/tableSort.js", "js/zsb.js"],
+			"css":["css/trade.css"]
 		},
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/Query/*"],
-			"js":["jquery-2.0.0.min.js", "ZhCN_Pinyin.min.js", "tableSort.js", "table.js", "queryLib.js", "Query.js"],
-			"css":["trade.css"]
+			"js":["js/libs/jquery-2.0.0.min.js", "js/libs/ZhCN_Pinyin.min.js", "js/libs/tableSort.js", "js/libs/table.js", "js/custom/queryLib.js", "js/Query.js"],
+			"css":["css/trade.css"]
 		},
 		{
 			"run_at": "document_end",
 			"matches":["https://trade.1234567.com.cn/zsb/query*"],
-			"js":["jquery-2.0.0.min.js", "ZhCN_Pinyin.min.js", "tableSort.js", "table.js", "queryLib.js", "zsbQ.js"],
-			"css":["trade.css"]
+			"js":["js/libs/jquery-2.0.0.min.js", "js/libs/ZhCN_Pinyin.min.js", "js/libs/tableSort.js", "js/libs/table.js", "js/custom/queryLib.js", "js/zsbQ.js"],
+			"css":["css/trade.css"]
 		}
 
 	],
-	"web_accessible_resources":["jquery.min.map"]
+	"web_accessible_resources":["js/libs/jquery.min.map"]
 }

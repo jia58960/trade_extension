@@ -8,8 +8,8 @@
 			var selector = $("#tbb-3");
 			queryDomFunc(selector, [0,1], '', 3, -2, '');
 
-			var srotRows = [0,1,3,-2,-3];
-			sortRowsFunc(selector.find("table thead th"),srotRows);
+			var sortRows = [0,1,3,-2,-3];
+			sortRowsFunc(selector.find("table thead th"),sortRows);
 
 			tableSort(selector.find("table"));
 
@@ -21,8 +21,8 @@
 			var selector = $("#tbb-4");
 			queryDomFunc(selector, [0], '', 2, '', -4);
 
-			var srotRows = [0,2,-3,-4,-5];
-			sortRowsFunc(selector.find("table thead th"),srotRows);
+			var sortRows = [0,2,-3,-4,-5];
+			sortRowsFunc(selector.find("table thead th"),sortRows);
 
 			tableSort(selector.find("table"));
 
@@ -35,8 +35,8 @@
 
 			queryDomFunc(selector, [0], 3, 2, '', '');
 
-			var srotRows = [0,2,3,-2,-1];
-			sortRowsFunc(selector.find("table thead th"),srotRows);
+			var sortRows = [0,2,3,-2,-1];
+			sortRowsFunc(selector.find("table thead th"),sortRows);
 
 			tableSort(selector.find("table"));
 
@@ -49,8 +49,8 @@
 
 			queryDomFunc(selector, [0], 4, 2, '', -4);
 
-			var srotRows = [0,2,4,-3,-4,-5];
-			sortRowsFunc(selector.find("table thead th"),srotRows);
+			var sortRows = [0,2,4,-3,-4,-5];
+			sortRowsFunc(selector.find("table thead th"),sortRows);
 
 			tableSort(selector.find("table"));
 
@@ -63,8 +63,8 @@
 
 			queryDomFunc(selector, [0,1], 5, 3, '', '');
 
-			var srotRows = [0,1,-3,-4,-5];
-			sortRowsFunc(selector.find("table thead th"),srotRows);
+			var sortRows = [0,1,-3,-4,-5];
+			sortRowsFunc(selector.find("table thead th"),sortRows);
 			
 			tableSort(selector.find("table"));
 

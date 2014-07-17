@@ -8,8 +8,8 @@ window.setTimeout(function(){
 		var selector = $("#tbb-0");
 		queryDomFunc(selector, [0,1], 5, 3, -2, '');
 
-		var srotRows = [0,1,3,-2,-3,-4,-5];
-		sortRowsFunc(selector.find("table thead th"),srotRows);
+		var sortRows = [0,1,3,-2,-3,-4,-5];
+		sortRowsFunc(selector.find("table thead th"),sortRows);
 
 		tableSort(selector.find("table"));
 	})();
@@ -19,8 +19,8 @@ window.setTimeout(function(){
 		var selector = $("#tbb-1");
 		queryDomFunc(selector, [0], 4, 2, '', -4);
 
-		var srotRows = [0,2,4,-3,-4,-5];
-		sortRowsFunc(selector.find("table thead th"),srotRows);
+		var sortRows = [0,2,4,-3,-4,-5];
+		sortRowsFunc(selector.find("table thead th"),sortRows);
 
 		tableSort(selector.find("table"));
 	})();
