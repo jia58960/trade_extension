@@ -25,12 +25,17 @@ $("#zsProduce").bind('DOMNodeInserted', function(e) {
 
 		    });
 
+		    $("#tb_0_zs > thead > tr >th:eq(4)").attr("datatype","float"); 
+		    $("#tb_0_zs > thead > tr >th:eq(-3)").attr("datatype","float");
+		    $("#tb_0_zs > thead > tr >th:eq(-2)").attr("datatype","float");
+		    $("#tb_0_zs > thead > tr >th:eq(-4)").attr("datatype","float");
+
 		    $.each($("#tb_0_zs tbody tr"), function(i,v) {
 
-				var str = $(this).find("td:eq(-5)").text();
+				/*var str = $(this).find("td:eq(-5)").text();
 				var t_str = str.split("/");
 				
-				$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));
+				$(this).find("td:eq(-5)").attr('_order',parseFloat(t_str[0]));*/
 
 				$(this).find("td:eq(1)").attr('_order',$(this).find("td:eq(1) a").text().trim()); //基金名称_order值
 				$(this).find("td:eq(2)").attr('_order',$(this).find("td:eq(2)").text()); //基金类型_order值
@@ -40,7 +45,7 @@ $("#zsProduce").bind('DOMNodeInserted', function(e) {
 		    var sortRows = [1,2,-2,-3,-5,-4];
 			sortRowsFunc($("#tb_0_zs thead th"), sortRows);
 
-			tableSort($('#tb_0_zs'),9,'hideTr','hideTr hide');
+			tableSort($('#tb_0_zs'),8,'hideTr','hideTr hide');
 		})();
 
 	}
@@ -72,6 +77,11 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 		        $(this).find("td:last").before('<td class="tar ' + d +'"><span class="n">' + yield + "</span></td>");
 		    });
 
+			$("#tb_0_0 > thead > tr >th:eq(-2)").attr("datatype","float");
+			$("#tb_0_0 > thead > tr >th:eq(-3)").attr("datatype","float");
+			$("#tb_0_0 > thead > tr >th:eq(-4)").attr("datatype","float");
+			$("#tb_0_0 > thead > tr >th:eq(-5)").attr("datatype","float");
+			
 		    $.each($("#tb_0_0 tbody tr"), function(i,v) {
 				var str = $(this).find("td:eq(-5)").text();
 				var t_str = str.split("/");
@@ -86,7 +96,7 @@ $("#tab0").bind('DOMNodeInserted', function(e) {
 		    var sortRows = [1,2,-2,-3,-5,-4];
 			sortRowsFunc($("#tb_0_0 thead th"), sortRows);
 
-			tableSort($('#tb_0_0'),9,'hideTr','hideTr hide');
+			tableSort($('#tb_0_0'),8,'hideTr','hideTr hide');
 			
 		})();
 	}

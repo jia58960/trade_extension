@@ -5,7 +5,7 @@ function tableSort(jqTableObj,colNum,rCN,aCN) {
 
 		function(){
 			
-			if (rCN) jqTableObj.find("tr."+rCN).remove();
+			if (rCN) jqTableObj.find("tr." + rCN).remove();
 			
 			var dataType = $(this).attr('datatype');
 			var tableObj = $(this).closest('table');
@@ -77,7 +77,9 @@ function tableSort(jqTableObj,colNum,rCN,aCN) {
                 }
 			}
 		}				
+
 		return {'sortStr' : sortStr};
+
 	})();
 }
 

@@ -27,7 +27,12 @@
 		        $(this).find("td:last").before('<td class="tar ' + d +'"><span class="n">' + yield + "</span></td>");
 		    });
 
-		    
+			//th列属性
+	    	$("#ts1 > thead > tr >th:eq(-5)").attr("datatype","float");
+	    	$("#ts1 > thead > tr >th:eq(-4)").attr("datatype","float");
+	    	$("#ts1 > thead > tr >th:eq(-3)").attr("datatype","float");
+	    	$("#ts1 > thead > tr >th:eq(-2)").attr("datatype","float");
+
 			$.each($("#ts1 tbody tr"), function(i,v) {
 				var str = $(this).find("td:eq(-5)").text();
 				var t_str = str.split("/");
